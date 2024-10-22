@@ -1,0 +1,1288 @@
+backend:
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+  branch: main
+media_folder: theme/assets/images
+public_folder: /assets/images
+collections:
+  - name: pages
+    label: Pages
+    identifier_field: title
+    extension: md
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    folder: cms/pages
+    fields:
+      - label: Title
+        name: title
+        widget: string
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '{{slug}}.html'
+      - &ref_0
+        label: Seo
+        name: seo
+        widget: object
+        collapsed: true
+        fields:
+          - label: Title
+            name: title
+            widget: string
+            required: false
+          - label: Description
+            name: description
+            widget: string
+            required: false
+          - label: No index
+            name: noindex
+            widget: boolean
+            default: false
+            required: false
+          - label: Open Graph Title
+            name: og:title
+            widget: string
+            required: false
+          - label: Open Graph Image
+            name: og:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Twitter Title
+            name: twitter:title
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Card
+            name: twitter:card
+            widget: string
+            default: summary
+            required: false
+          - label: Twitter Site
+            name: twitter:site
+            widget: string
+            required: false
+          - label: Twitter Creator
+            name: twitter:creator
+            widget: string
+            required: false
+          - label: Twitter Image
+            name: twitter:image
+            widget: image
+            required: false
+            media_library:
+              config:
+                multiple: false
+          - label: Additional HTML tags
+            name: additional_tags
+            widget: text
+            required: false
+  - name: stay_dine
+    label: Stay & Dines
+    folder: cms/stay-dine
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_color
+        label: Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: stay-dine
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[stay-dine].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: small_business
+    label: Small Businesses
+    folder: cms/small-business
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_color
+        label: Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: small-business
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[small-business].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: brands
+    label: Brands
+    folder: cms/brands
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_color
+        label: Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: brands
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[brands].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: community
+    label: Communities
+    folder: cms/community
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: ''
+        name: f_featured
+        label: Featured?
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_color
+        label: Color
+        widget: color
+        required: false
+        enableAlpha: true
+        allowInput: true
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: community
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[community].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - label: Theme Settings
+    name: settings
+    identifier_field: title
+    extension: json
+    create: false
+    delete: false
+    slug: '{{slug}}'
+    editor:
+      preview: false
+    files:
+      - label: General
+        name: site
+        file: cms/_data/settings/site.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: General
+          - hint: Full domain url (needed for a correct sitemap file)
+            name: domain
+            label: Domain
+            widget: string
+            required: false
+          - name: favicon
+            label: Favicon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: apple_touch_icon
+            label: Apple Touch Icon
+            widget: image
+            allow_multiple: false
+            required: false
+          - name: header_additional_content
+            label: Additional Content Header
+            hint: Content here will be placed before </head> tag
+            widget: text
+            required: false
+          - name: footer_additional_content
+            label: Additional Content Footer
+            hint: Content here will be placed before </body> tag
+            widget: text
+            required: false
+          - name: images_optimization
+            label: Images Optimization
+            widget: object
+            collapsed: false
+            fields:
+              - label: Image Formats
+                name: formats
+                widget: select
+                multiple: true
+                options:
+                  - label: Avif
+                    value: avif
+                  - label: Webp
+                    value: webp
+              - label: Image Dimensions
+                name: dimensions
+                widget: select
+                multiple: true
+                options:
+                  - label: '500'
+                    value: 500
+                  - label: '800'
+                    value: 800
+                  - label: '1080'
+                    value: 1080
+                  - label: '1600'
+                    value: 1600
+                  - label: '2000'
+                    value: 2000
+                  - label: '2600'
+                    value: 2600
+      - label: Colors
+        name: colors
+        file: cms/_data/colors.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Colors
+      - label: Texts
+        name: texts
+        file: cms/_data/texts.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Texts
+          - hint: "Original text: Gil &\_Sol, key: 4473c200"
+            label: Text
+            name: 4473c200
+            widget: string
+          - hint: "Original text: Stay &\_Dine, key: 25583cdd"
+            label: Text
+            name: 25583cdd
+            widget: string
+          - hint: 'Original text: /, key: 2f'
+            label: Text
+            name: 2f
+            widget: string
+          - hint: 'Original text: Small Business, key: -257a0d07'
+            label: Text
+            name: '-257a0d07'
+            widget: string
+          - hint: 'Original text: Brands, key: 771411ec'
+            label: Text
+            name: 771411ec
+            widget: string
+          - hint: 'Original text: Community, key: 1f374fc9'
+            label: Text
+            name: 1f374fc9
+            widget: string
+          - hint: 'Original text: Contact, key: -64104400'
+            label: Text
+            name: '-64104400'
+            widget: string
+          - hint: 'Original text: ← Back, key: 4788c197'
+            label: Text
+            name: 4788c197
+            widget: string
+          - hint: 'Original text: Home, key: 2268ff'
+            label: Text
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: Comments ↓, key: -5395cd79'
+            label: Text
+            name: '-5395cd79'
+            widget: string
+          - hint: 'Original text: Jump to next article, key: 27c57a7c'
+            label: Text
+            name: 27c57a7c
+            widget: string
+          - hint: 'Original text: Read Article →, key: -57a48d22'
+            label: Text
+            name: '-57a48d22'
+            widget: string
+          - hint: 'Original text: No items found., key: 3d503d2b'
+            label: Text
+            name: 3d503d2b
+            widget: string
+          - hint: 'Original text: Stay up to date, key: 512b4db5'
+            label: Text
+            name: 512b4db5
+            widget: string
+          - hint: 'Original text: We care about your data in our , key: -5505a12a'
+            label: Text
+            name: '-5505a12a'
+            widget: string
+          - hint: 'Original text: privacy policy, key: 329660ca'
+            label: Text
+            name: 329660ca
+            widget: string
+          - hint: 'Original text: ., key: 2e'
+            label: Text
+            name: 2e
+            widget: string
+          - hint: >-
+              Original text: Thank you! Your submission has been received!, key:
+              5a0ea5a1
+            label: Text
+            name: 5a0ea5a1
+            widget: string
+          - hint: >-
+              Original text: Oops! Something went wrong while submitting the
+              form., key: -7c112e99
+            label: Text
+            name: '-7c112e99'
+            widget: string
+          - hint: "Original text: © 2024 Gil &\_Sol. All rights reserved., key: -4bcd0f9b"
+            label: Text
+            name: '-4bcd0f9b'
+            widget: string
+          - hint: 'Original text: Terms, key: 4cf5967'
+            label: Text
+            name: 4cf5967
+            widget: string
+          - hint: 'Original text: Privacy, key: 5079bb68'
+            label: Text
+            name: 5079bb68
+            widget: string
+          - hint: 'Original text: Cookies, key: -64062591'
+            label: Text
+            name: '-64062591'
+            widget: string
+          - hint: "Original text: Small\_Business, key: -3428c87"
+            label: Text
+            name: '-3428c87'
+            widget: string
+          - hint: 'Original text: Upcoming Events, key: 6b492c9d'
+            label: Text
+            name: 6b492c9d
+            widget: string
+          - hint: 'Original text: Floor 13 Tradeshow, key: 41335d77'
+            label: Text
+            name: 41335d77
+            widget: string
+          - hint: "Original text: A trade show of cohesively-minded brands pooling creative resources and sharing space for a few days \_in new york city, key: -22ecf6a7"
+            label: Text
+            name: '-22ecf6a7'
+            widget: text
+          - hint: 'Original text: Register, key: -25496d3d'
+            label: Text
+            name: '-25496d3d'
+            widget: string
+          - hint: 'Original text: Read More →, key: -56352af'
+            label: Text
+            name: '-56352af'
+            widget: string
+          - hint: 'Original text: Notes from editor, key: 40317fa4'
+            label: Text
+            name: 40317fa4
+            widget: string
+          - hint: >-
+              Original text: If you wish to travel far and fast, travel light.
+              Take off all your envies, jealousies, unforgiveness, selfishness
+              and fears., key: 7e1725f7
+            label: Text
+            name: 7e1725f7
+            widget: text
+          - hint: 'Original text: Stay & Dine, key: 1e4c7c5d'
+            label: Text
+            name: 1e4c7c5d
+            widget: string
+          - hint: 'Original text: Text Link, key: 3610230d'
+            label: Text
+            name: 3610230d
+            widget: string
+          - hint: 'Original text: Register →, key: 75d1375'
+            label: Text
+            name: 75d1375
+            widget: string
+          - hint: 'Original text: July 15th - 17th, key: -5df7c733'
+            label: Text
+            name: '-5df7c733'
+            widget: string
+          - hint: 'Original text: 267 Fifth Avenue, key: 504dd604'
+            label: Text
+            name: 504dd604
+            widget: string
+          - hint: "Original text: New York, NY\_10016, key: af43204"
+            label: Text
+            name: af43204
+            widget: string
+          - hint: >-
+              Original text: Unveiling Floor 13: A Creative Convergence in NYC,
+              key: f96bc39
+            label: Text
+            name: f96bc39
+            widget: string
+          - hint: >-
+              Original text: Mark your calendars! Floor 13, an extraordinary
+              trade show featuring a diverse roster of cohesively-minded brands,
+              is coming to New York City. From July 15-17, join us at 267 Fifth
+              Avenue for a weekend of innovation, creativity, and
+              collaboration., key: 52e4314e
+            label: Text
+            name: 52e4314e
+            widget: text
+          - hint: 'Original text: ‍, key: 200d'
+            label: Text
+            name: 200d
+            widget: string
+          - hint: 'Original text: What is Floor 13?, key: -18f00f91'
+            label: Text
+            name: '-18f00f91'
+            widget: string
+          - hint: >-
+              Original text: Floor 13 is more than just a trade show; it’s a
+              celebration of creativity and innovation. This unique event brings
+              together a carefully curated selection of brands, pooling their
+              creative resources to share space and ideas. Attendees can expect
+              a vibrant atmosphere where industry leaders, creative minds, and
+              brand enthusiasts converge., key: -47787208
+            label: Text
+            name: '-47787208'
+            widget: text
+          - hint: 'Original text: Meet the Brands, key: 530ce1d4'
+            label: Text
+            name: 530ce1d4
+            widget: string
+          - hint: >-
+              Original text: Our brand roster includes some of the most exciting
+              names in the industry. Here are just a few highlights:, key:
+              -190ea1b1
+            label: Text
+            name: '-190ea1b1'
+            widget: text
+          - hint: 'Original text: Ace Rivington:, key: -5ef001d9'
+            label: Text
+            name: '-5ef001d9'
+            widget: string
+          - hint: >-
+              Original text:  Renowned for timeless, durable clothing that
+              stands the test of time., key: 4dd38781
+            label: Text
+            name: 4dd38781
+            widget: string
+          - hint: 'Original text: American Trench:, key: -32b2c92'
+            label: Text
+            name: '-32b2c92'
+            widget: string
+          - hint: >-
+              Original text:  Blending classic American style with modern
+              functionality., key: -704bad84
+            label: Text
+            name: '-704bad84'
+            widget: string
+          - hint: 'Original text: B3 Balm:, key: -73a9c295'
+            label: Text
+            name: '-73a9c295'
+            widget: string
+          - hint: >-
+              Original text:  Offering high-quality skincare products., key:
+              -54a48856
+            label: Text
+            name: '-54a48856'
+            widget: string
+          - hint: 'Original text: BN3TH:, key: 7503757f'
+            label: Text
+            name: 7503757f
+            widget: string
+          - hint: 'Original text:  Innovators in men’s underwear., key: 7a9cf48f'
+            label: Text
+            name: 7a9cf48f
+            widget: string
+          - hint: 'Original text: Billy Reid:, key: 31135ade'
+            label: Text
+            name: 31135ade
+            widget: string
+          - hint: >-
+              Original text:  Known for sophisticated, Southern-inspired
+              fashion., key: -5318920b
+            label: Text
+            name: '-5318920b'
+            widget: string
+          - hint: 'Original text: CUTS:, key: 3d80fe9'
+            label: Text
+            name: 3d80fe9
+            widget: string
+          - hint: >-
+              Original text:  Modern apparel designed for an active lifestyle.,
+              key: -3f4c520e
+            label: Text
+            name: '-3f4c520e'
+            widget: string
+          - hint: 'Original text: Descendant of Thieves:, key: 7a57dd6c'
+            label: Text
+            name: 7a57dd6c
+            widget: string
+          - hint: >-
+              Original text:  Unique menswear with a distinctive edge., key:
+              -43c0d217
+            label: Text
+            name: '-43c0d217'
+            widget: string
+          - hint: 'Original text: Diadora Heritage:, key: -42c374f'
+            label: Text
+            name: '-42c374f'
+            widget: string
+          - hint: >-
+              Original text:  Italian craftsmanship meets contemporary style.,
+              key: -263a03a3
+            label: Text
+            name: '-263a03a3'
+            widget: string
+          - hint: 'Original text: DL1961:, key: -6e5ab9d1'
+            label: Text
+            name: '-6e5ab9d1'
+            widget: string
+          - hint: >-
+              Original text:  Sustainable denim with a focus on fit and
+              quality., key: 51375079
+            label: Text
+            name: '51375079'
+            widget: string
+          - hint: 'Original text: Fahrenheit:, key: 64e35484'
+            label: Text
+            name: '64e35484'
+            widget: string
+          - hint: >-
+              Original text:  Cutting-edge fashion for the modern individual.,
+              key: 5b8f6248
+            label: Text
+            name: 5b8f6248
+            widget: string
+          - hint: 'Original text: Fair Harbor:, key: 46b4d432'
+            label: Text
+            name: 46b4d432
+            widget: string
+          - hint: >-
+              Original text:  Sustainable clothing made from recycled
+              materials., key: 56aed931
+            label: Text
+            name: 56aed931
+            widget: string
+          - hint: 'Original text: Fulton & Roark:, key: -6e2cabbf'
+            label: Text
+            name: '-6e2cabbf'
+            widget: string
+          - hint: 'Original text:  Premium grooming products for men., key: -6d51144c'
+            label: Text
+            name: '-6d51144c'
+            widget: string
+          - hint: 'Original text: Got Bag:, key: -78e44b7a'
+            label: Text
+            name: '-78e44b7a'
+            widget: string
+          - hint: >-
+              Original text:  Eco-friendly bags made from recycled ocean
+              plastic., key: -15a333e8
+            label: Text
+            name: '-15a333e8'
+            widget: string
+          - hint: 'Original text: Grayers:, key: a58a897'
+            label: Text
+            name: a58a897
+            widget: string
+          - hint: >-
+              Original text:  Redefining classics with innovative fabrics and
+              designs., key: -693408f1
+            label: Text
+            name: '-693408f1'
+            widget: string
+          - hint: 'Original text: House By Everton:, key: -7349d012'
+            label: Text
+            name: '-7349d012'
+            widget: string
+          - hint: >-
+              Original text:  Home goods that combine style and function., key:
+              -3186b191
+            label: Text
+            name: '-3186b191'
+            widget: string
+          - hint: 'Original text: Jack Stegeman:, key: 20ccb421'
+            label: Text
+            name: 20ccb421
+            widget: string
+          - hint: >-
+              Original text:  Luxury menswear with an eye for detail., key:
+              -14ff4973
+            label: Text
+            name: '-14ff4973'
+            widget: string
+          - hint: 'Original text: Jetty:, key: -7bf39ec4'
+            label: Text
+            name: '-7bf39ec4'
+            widget: string
+          - hint: 'Original text:  Coastal lifestyle apparel., key: 738bca1f'
+            label: Text
+            name: 738bca1f
+            widget: string
+          - hint: 'Original text: Johnston & Murphy:, key: 24867554'
+            label: Text
+            name: '24867554'
+            widget: string
+          - hint: 'Original text:  Classic footwear and accessories., key: -6365f0d4'
+            label: Text
+            name: '-6365f0d4'
+            widget: string
+          - hint: 'Original text: Katin:, key: -7a774ec9'
+            label: Text
+            name: '-7a774ec9'
+            widget: string
+          - hint: 'Original text:  Coastal-inspired casual wear., key: 1da33f64'
+            label: Text
+            name: 1da33f64
+            widget: string
+          - hint: 'Original text: Kier & J:, key: -51658441'
+            label: Text
+            name: '-51658441'
+            widget: string
+          - hint: >-
+              Original text:  Women’s fashion blending elegance and comfort.,
+              key: 658602b4
+            label: Text
+            name: 658602b4
+            widget: string
+          - hint: 'Original text: Lusso Cloud:, key: -331cd5a1'
+            label: Text
+            name: '-331cd5a1'
+            widget: string
+          - hint: >-
+              Original text:  Ultra-comfortable footwear for everyday use., key:
+              -4e9529
+            label: Text
+            name: '-4e9529'
+            widget: string
+          - hint: 'Original text: MPG Sport:, key: -304abbfe'
+            label: Text
+            name: '-304abbfe'
+            widget: string
+          - hint: 'Original text:  Performance-driven activewear., key: 73cd584a'
+            label: Text
+            name: 73cd584a
+            widget: string
+          - hint: 'Original text: Mohinders:, key: 6b11964d'
+            label: Text
+            name: 6b11964d
+            widget: string
+          - hint: >-
+              Original text:  Handcrafted footwear rooted in tradition., key:
+              3e10ec91
+            label: Text
+            name: 3e10ec91
+            widget: string
+          - hint: 'Original text: Ons Clothing:, key: -4eb8b93a'
+            label: Text
+            name: '-4eb8b93a'
+            widget: string
+          - hint: 'Original text:  High-performance athletic wear., key: 4aeaf82a'
+            label: Text
+            name: 4aeaf82a
+            widget: string
+          - hint: 'Original text: PKG:, key: 25800e'
+            label: Text
+            name: 25800e
+            widget: string
+          - hint: >-
+              Original text:  Stylish and functional bags for everyday use.,
+              key: -4797f748
+            label: Text
+            name: '-4797f748'
+            widget: string
+          - hint: 'Original text: Retro Brand:, key: b601d95'
+            label: Text
+            name: b601d95
+            widget: string
+          - hint: 'Original text:  Vintage-inspired apparel., key: -1524f3fc'
+            label: Text
+            name: '-1524f3fc'
+            widget: string
+          - hint: 'Original text: Rye 51:, key: -3a280324'
+            label: Text
+            name: '-3a280324'
+            widget: string
+          - hint: 'Original text:  Custom-tailored menswear., key: 1a6e2460'
+            label: Text
+            name: 1a6e2460
+            widget: string
+          - hint: 'Original text: Sol Angeles:, key: 75eaa27b'
+            label: Text
+            name: 75eaa27b
+            widget: string
+          - hint: >-
+              Original text:  Effortlessly cool, California-inspired fashion.,
+              key: 10b0722
+            label: Text
+            name: 10b0722
+            widget: string
+          - hint: 'Original text: Stock Collection:, key: 24f5bf12'
+            label: Text
+            name: 24f5bf12
+            widget: string
+          - hint: 'Original text:  Minimalist fashion essentials., key: -68a82796'
+            label: Text
+            name: '-68a82796'
+            widget: string
+          - hint: 'Original text: SWIMS:, key: -6d716d31'
+            label: Text
+            name: '-6d716d31'
+            widget: string
+          - hint: >-
+              Original text:  Stylish and functional footwear and outerwear.,
+              key: -6af40f6e
+            label: Text
+            name: '-6af40f6e'
+            widget: string
+          - hint: 'Original text: Umber & Ochre:, key: 2292cb56'
+            label: Text
+            name: 2292cb56
+            widget: string
+          - hint: 'Original text:  Sustainable fashion with a story., key: -ee599f9'
+            label: Text
+            name: '-ee599f9'
+            widget: string
+          - hint: 'Original text: Vustra:, key: -6c761595'
+            label: Text
+            name: '-6c761595'
+            widget: string
+          - hint: >-
+              Original text:  Ethical menswear for the modern man., key:
+              7f1c256d
+            label: Text
+            name: 7f1c256d
+            widget: string
+          - hint: 'Original text: Zanella:, key: 51dd4db7'
+            label: Text
+            name: 51dd4db7
+            widget: string
+          - hint: 'Original text:  Luxury trousers crafted in Italy., key: 3110370f'
+            label: Text
+            name: 3110370f
+            widget: string
+          - hint: 'Original text: What to Expect, key: -1a4d087e'
+            label: Text
+            name: '-1a4d087e'
+            widget: string
+          - hint: 'Original text: Product Demos:, key: 6fa7d7db'
+            label: Text
+            name: 6fa7d7db
+            widget: string
+          - hint: >-
+              Original text:  Witness the latest innovations from brands like
+              Grayers, Jetty, and Retro Brand. Get hands-on experience with new
+              products and see the craftsmanship up close., key: 57d06f92
+            label: Text
+            name: 57d06f92
+            widget: text
+          - hint: 'Original text: Networking Events:, key: -32771aeb'
+            label: Text
+            name: '-32771aeb'
+            widget: string
+          - hint: >-
+              Original text:  Connect with industry leaders and fellow
+              enthusiasts over drinks and canapés. Forge new relationships and
+              discover potential collaborations in a relaxed, social setting.,
+              key: -5fd374b4
+            label: Text
+            name: '-5fd374b4'
+            widget: text
+          - hint: 'Original text: Interactive Experiences:, key: 110fedcf'
+            label: Text
+            name: 110fedcf
+            widget: string
+          - hint: >-
+              Original text:  Engage with products from MPG Sport, SWIMS, and
+              more. Explore interactive displays and immersive experiences that
+              bring the brands to life, key: -513cc36e
+            label: Text
+            name: '-513cc36e'
+            widget: text
+          - hint: >-
+              Original text: This is some text inside of a div block., key:
+              7635fb4f
+            label: Text
+            name: 7635fb4f
+            widget: string
+          - hint: 'Original text: Heading, key: -6d5fea1e'
+            label: Text
+            name: '-6d5fea1e'
+            widget: string
+          - hint: >-
+              Original text: Lorem ipsum dolor sit amet, consectetur adipiscing
+              elit. Suspendisse varius enim in eros elementum tristique. Duis
+              cursus, mi quis viverra ornare, eros dolor interdum nulla, ut
+              commodo diam libero vitae erat. Aenean faucibus nibh et justo
+              cursus id rutrum lorem imperdiet. Nunc ut sem vitae risus
+              tristique posuere., key: -5286fc08
+            label: Text
+            name: '-5286fc08'
+            widget: text
+      - label: Links
+        name: links
+        file: cms/_data/links.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Links
+          - hint: 'Original link: /, key: 2f'
+            label: Link
+            name: 2f
+            widget: string
+          - hint: 'Original link: /archive-stay-dine/, key: 4b069699'
+            label: Link
+            name: 4b069699
+            widget: string
+          - hint: 'Original link: /small-busness/, key: 19697a2d'
+            label: Link
+            name: 19697a2d
+            widget: string
+          - hint: 'Original link: /archive-brands/, key: -2308ce37'
+            label: Link
+            name: '-2308ce37'
+            widget: string
+          - hint: 'Original link: /archive-community/, key: 469dc0'
+            label: Link
+            name: 469dc0
+            widget: string
+          - hint: 'Original link: #, key: 23'
+            label: Link
+            name: '23'
+            widget: string
+          - hint: 'Original link: https://disqus.com/?ref_noscript, key: -4da28db5'
+            label: Link
+            name: '-4da28db5'
+            widget: string
+          - hint: 'Original link: https://floor13tradeshow.com/, key: 2e9c6d7a'
+            label: Link
+            name: 2e9c6d7a
+            widget: string
+          - hint: 'Original link: /floor-13-tradeshow/, key: -4db6a617'
+            label: Link
+            name: '-4db6a617'
+            widget: string
+      - label: Images
+        name: images
+        file: cms/_data/images.json
+        fields:
+          - label: Title
+            name: title
+            widget: hidden
+            default: Images
+          - label: Image
+            name: '71252639'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 317f733b
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: 3089843a
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+          - label: Image
+            name: '-73c2fc18'
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
+local_backend: true
+publish_mode: editorial_workflow
