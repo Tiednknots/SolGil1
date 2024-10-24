@@ -9,6 +9,7 @@ f_main-image:
 f_thumbnail-image:
   url: /assets/images/55776.jpeg
 f_featured: true
+f_category: "Stay & Dine "
 tags: stay-dine
 layout: "[stay-dine].html"
 date: 2024-10-24T21:33:50.869Z
