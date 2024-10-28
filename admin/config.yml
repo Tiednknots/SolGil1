@@ -87,6 +87,147 @@ collections:
             name: additional_tags
             widget: text
             required: false
+  - name: notes_from_gil_sol
+    label: Notes from Gil & Sols
+    folder: cms/notes-from-gil-sol
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Quoted Message
+        name: body
+        widget: markdown
+        required: false
+      - hint: ''
+        name: f_quote-author
+        label: Quote Author
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: notes-from-gil-sol
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[notes-from-gil-sol].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: featured_post
+    label: Featured Posts
+    folder: cms/featured-post
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: f_blog-from-stay-and-dine
+        label: Blog from stay and dine
+        widget: relation
+        required: false
+        collection: stay_dine
+        value_field: cms/stay-dine/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_blog-from-small-business
+        label: Blog from Small Business
+        widget: relation
+        required: false
+        collection: stay_dine
+        value_field: cms/stay-dine/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_blog-from-brands
+        label: Blog From Brands
+        widget: relation
+        required: false
+        collection: brands
+        value_field: cms/brands/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - hint: ''
+        name: f_blog-from-community
+        label: Blog from community
+        widget: relation
+        required: false
+        collection: community
+        value_field: cms/community/{{slug}}.md
+        search_fields:
+          - slug
+          - name
+        display_fields:
+          - title
+        multiple: true
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: featured-post
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[featured-post].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
   - name: stay_dine
     label: Stay & Dines
     folder: cms/stay-dine
@@ -158,19 +299,12 @@ collections:
             label: alt
             widget: string
             required: false
-      - hint: ''
+      - hint: Turn this on for the main blog that appears first on the website
         name: f_featured
-        label: Featured?
+        label: Featured
         widget: boolean
         required: false
         default: false
-      - hint: ''
-        name: f_color
-        label: Color
-        widget: color
-        required: false
-        enableAlpha: true
-        allowInput: true
       - hint: ''
         name: f_category
         label: Category
@@ -268,19 +402,12 @@ collections:
             label: alt
             widget: string
             required: false
-      - hint: ''
+      - hint: Turn this on for the first post on website
         name: f_featured
-        label: Featured?
+        label: Featured
         widget: boolean
         required: false
         default: false
-      - hint: ''
-        name: f_color
-        label: Color
-        widget: color
-        required: false
-        enableAlpha: true
-        allowInput: true
       - hint: ''
         name: f_category
         label: Category
@@ -378,19 +505,12 @@ collections:
             label: alt
             widget: string
             required: false
-      - hint: ''
+      - hint: This is the main blog post on the website
         name: f_featured
-        label: Featured?
+        label: Featured
         widget: boolean
         required: false
         default: false
-      - hint: ''
-        name: f_color
-        label: Color
-        widget: color
-        required: false
-        enableAlpha: true
-        allowInput: true
       - hint: ''
         name: f_category
         label: Category
@@ -488,19 +608,12 @@ collections:
             label: alt
             widget: string
             required: false
-      - hint: ''
+      - hint: First blog on website
         name: f_featured
-        label: Featured?
+        label: Featured
         widget: boolean
         required: false
         default: false
-      - hint: ''
-        name: f_color
-        label: Color
-        widget: color
-        required: false
-        enableAlpha: true
-        allowInput: true
       - hint: ''
         name: f_category
         label: Category
@@ -523,6 +636,217 @@ collections:
         widget: hidden
         name: layout
         default: '[community].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: main_feature_post
+    label: Main Feature Posts
+    folder: cms/main-feature-post
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Turn this on for the main blog that appears first on the website
+        name: f_featured
+        label: Featured
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: main-feature-post
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[main-feature-post].html'
+      - label: Publish Date
+        name: date
+        widget: datetime
+      - *ref_0
+  - name: focused_content
+    label: Focused Contents
+    folder: cms/focused-content
+    create: true
+    identifier_field: name
+    extension: md
+    slug: '{{slug}}'
+    fields:
+      - hint: ''
+        name: title
+        label: Name
+        widget: string
+        required: true
+      - hint: ''
+        name: created-on
+        label: Created On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: updated-on
+        label: Updated On
+        widget: datetime
+        required: false
+      - hint: ''
+        name: published-on
+        label: Published On
+        widget: datetime
+        required: false
+      - label: Post Body
+        name: body
+        widget: markdown
+        required: false
+      - hint: A summary of the blog post that appears on blog post grid
+        name: f_post-summary
+        label: Post Summary
+        widget: text
+        required: false
+      - hint: ''
+        name: f_main-image
+        label: Main Image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Smaller version of main image that is used on blog post grid
+        name: f_thumbnail-image
+        label: Thumbnail image
+        widget: object
+        required: false
+        fields:
+          - hint: ''
+            name: url
+            label: Image
+            widget: image
+            required: false
+            allow_multiple: false
+          - hint: Image Alt
+            name: alt
+            label: alt
+            widget: string
+            required: false
+      - hint: Turn this on for the first post on website
+        name: f_featured
+        label: Featured
+        widget: boolean
+        required: false
+        default: false
+      - hint: ''
+        name: f_category
+        label: Category
+        widget: select
+        required: false
+        options:
+          - label: 'Stay & Dine '
+            value: 'Stay & Dine '
+          - label: 'Small Business '
+            value: 'Small Business '
+          - label: Brands
+            value: Brands
+          - label: Community
+            value: Community
+      - hint: ''
+        name: f_secondary-link
+        label: Secondary Link
+        widget: string
+        required: false
+      - label: Tags
+        widget: hidden
+        name: tags
+        default: focused-content
+      - label: Layout
+        widget: hidden
+        name: layout
+        default: '[focused-content].html'
       - label: Publish Date
         name: date
         widget: datetime
@@ -645,22 +969,6 @@ collections:
             label: Text
             name: '-64104400'
             widget: string
-          - hint: 'Original text: ← Back, key: 4788c197'
-            label: Text
-            name: 4788c197
-            widget: string
-          - hint: 'Original text: Home, key: 2268ff'
-            label: Text
-            name: 2268ff
-            widget: string
-          - hint: 'Original text: Comments ↓, key: -5395cd79'
-            label: Text
-            name: '-5395cd79'
-            widget: string
-          - hint: 'Original text: Jump to next article, key: 27c57a7c'
-            label: Text
-            name: 27c57a7c
-            widget: string
           - hint: 'Original text: Read Article →, key: -57a48d22'
             label: Text
             name: '-57a48d22'
@@ -669,33 +977,36 @@ collections:
             label: Text
             name: 3d503d2b
             widget: string
+          - hint: "Original text: Small\_Business, key: -3428c87"
+            label: Text
+            name: '-3428c87'
+            widget: string
+          - hint: 'Original text: Upcoming Events, key: 6b492c9d'
+            label: Text
+            name: 6b492c9d
+            widget: string
+          - hint: 'Original text: Read More, key: 318af39f'
+            label: Text
+            name: 318af39f
+            widget: string
+          - hint: 'Original text: Link →, key: -785454f4'
+            label: Text
+            name: '-785454f4'
+            widget: string
+          - hint: 'Original text: Notes from editor, key: 40317fa4'
+            label: Text
+            name: 40317fa4
+            widget: string
+          - hint: >-
+              Original text: If you wish to travel far and fast, travel light.
+              Take off all your envies, jealousies, unforgiveness, selfishness
+              and fears., key: 7e1725f7
+            label: Text
+            name: 7e1725f7
+            widget: text
           - hint: 'Original text: Stay up to date, key: 512b4db5'
             label: Text
             name: 512b4db5
-            widget: string
-          - hint: 'Original text: We care about your data in our , key: -5505a12a'
-            label: Text
-            name: '-5505a12a'
-            widget: string
-          - hint: 'Original text: privacy policy, key: 329660ca'
-            label: Text
-            name: 329660ca
-            widget: string
-          - hint: 'Original text: ., key: 2e'
-            label: Text
-            name: 2e
-            widget: string
-          - hint: >-
-              Original text: Thank you! Your submission has been received!, key:
-              5a0ea5a1
-            label: Text
-            name: 5a0ea5a1
-            widget: string
-          - hint: >-
-              Original text: Oops! Something went wrong while submitting the
-              form., key: -7c112e99
-            label: Text
-            name: '-7c112e99'
             widget: string
           - hint: "Original text: © 2024 Gil &\_Sol. All rights reserved., key: -4bcd0f9b"
             label: Text
@@ -713,13 +1024,29 @@ collections:
             label: Text
             name: '-64062591'
             widget: string
-          - hint: "Original text: Small\_Business, key: -3428c87"
+          - hint: 'Original text: ← Back, key: 4788c197'
             label: Text
-            name: '-3428c87'
+            name: 4788c197
             widget: string
-          - hint: 'Original text: Upcoming Events, key: 6b492c9d'
+          - hint: 'Original text: Home, key: 2268ff'
             label: Text
-            name: 6b492c9d
+            name: 2268ff
+            widget: string
+          - hint: 'Original text: Comments ↓, key: -5395cd79'
+            label: Text
+            name: '-5395cd79'
+            widget: string
+          - hint: 'Original text: Jump to next article, key: 27c57a7c'
+            label: Text
+            name: 27c57a7c
+            widget: string
+          - hint: 'Original text: Stay & Dine, key: 1e4c7c5d'
+            label: Text
+            name: 1e4c7c5d
+            widget: string
+          - hint: 'Original text: Text Link, key: 3610230d'
+            label: Text
+            name: 3610230d
             widget: string
           - hint: 'Original text: Floor 13 Tradeshow, key: 41335d77'
             label: Text
@@ -729,33 +1056,6 @@ collections:
             label: Text
             name: '-22ecf6a7'
             widget: text
-          - hint: 'Original text: Register, key: -25496d3d'
-            label: Text
-            name: '-25496d3d'
-            widget: string
-          - hint: 'Original text: Read More →, key: -56352af'
-            label: Text
-            name: '-56352af'
-            widget: string
-          - hint: 'Original text: Notes from editor, key: 40317fa4'
-            label: Text
-            name: 40317fa4
-            widget: string
-          - hint: >-
-              Original text: If you wish to travel far and fast, travel light.
-              Take off all your envies, jealousies, unforgiveness, selfishness
-              and fears., key: 7e1725f7
-            label: Text
-            name: 7e1725f7
-            widget: text
-          - hint: 'Original text: Stay & Dine, key: 1e4c7c5d'
-            label: Text
-            name: 1e4c7c5d
-            widget: string
-          - hint: 'Original text: Text Link, key: 3610230d'
-            label: Text
-            name: 3610230d
-            widget: string
           - hint: 'Original text: Register →, key: 75d1375'
             label: Text
             name: 75d1375
@@ -1180,6 +1480,53 @@ collections:
             label: Text
             name: '-5286fc08'
             widget: text
+          - hint: 'Original text: Contact us, key: 7f274abe'
+            label: Text
+            name: 7f274abe
+            widget: string
+          - hint: >-
+              Original text: Ready to explore our vibrant space? Book your tour
+              now and unlock the potential of your creative journey!, key:
+              -6d58887c
+            label: Text
+            name: '-6d58887c'
+            widget: text
+          - hint: 'Original text: Location:, key: 30167705'
+            label: Text
+            name: '30167705'
+            widget: string
+          - hint: 'Original text: 15 Linton Rd, key: -39d850c'
+            label: Text
+            name: '-39d850c'
+            widget: string
+          - hint: 'Original text: Barking IG11 8HE , key: -30beefe9'
+            label: Text
+            name: '-30beefe9'
+            widget: string
+          - hint: 'Original text: Phone:, key: -718ea354'
+            label: Text
+            name: '-718ea354'
+            widget: string
+          - hint: 'Original text: 07951 497896, key: 5fd0a8f5'
+            label: Text
+            name: 5fd0a8f5
+            widget: string
+          - hint: 'Original text: I agree to terms, key: 6dad9f4d'
+            label: Text
+            name: 6dad9f4d
+            widget: string
+          - hint: >-
+              Original text: Your information is submitted succesfully!, key:
+              -3983dd3f
+            label: Text
+            name: '-3983dd3f'
+            widget: string
+          - hint: >-
+              Original text: Something went wrong, check the validity of your
+              information., key: 68e451b2
+            label: Text
+            name: 68e451b2
+            widget: string
       - label: Links
         name: links
         file: cms/_data/links.json
@@ -1208,6 +1555,10 @@ collections:
             label: Link
             name: 469dc0
             widget: string
+          - hint: 'Original link: /contact/, key: 16bdc13e'
+            label: Link
+            name: 16bdc13e
+            widget: string
           - hint: 'Original link: #, key: 23'
             label: Link
             name: '23'
@@ -1220,9 +1571,12 @@ collections:
             label: Link
             name: 2e9c6d7a
             widget: string
-          - hint: 'Original link: /floor-13-tradeshow/, key: -4db6a617'
+          - hint: >-
+              Original link:
+              https://www.google.com/search?client=firefox-b-e&q=make+it+barking+bar#,
+              key: -7bed4d88
             label: Link
-            name: '-4db6a617'
+            name: '-7bed4d88'
             widget: string
       - label: Images
         name: images
@@ -1232,6 +1586,19 @@ collections:
             name: title
             widget: hidden
             default: Images
+          - label: Image
+            name: i79498946
+            widget: object
+            fields:
+              - name: url
+                label: Image Url
+                widget: image
+                allow_multiple: false
+                required: false
+              - name: alt
+                label: Image Alt
+                widget: string
+                required: false
           - label: Image
             name: '71252639'
             widget: object
